@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import api from '../api/axios'
+
 
 const Footer = () => {
   const [socialLinks, setSocialLinks] = useState({
@@ -10,25 +10,13 @@ const Footer = () => {
   })
 
   useEffect(() => {
-    fetchSocialLinks()
+    setSocialLinks({
+      instagram: 'https://www.instagram.com/ismailsn_12',
+      linkedin: 'https://www.linkedin.com/in/ismailsanouni/',
+      x: 'https://twitter.com/ismailsanouni'
+    })
   }, [])
 
-  const fetchSocialLinks = async () => {
-    try {
-      const response = await api.get('/content')
-      if (response.data.success) {
-        const content = response.data.data
-        setSocialLinks({
-          email: content.email || '',
-          instagram: content.instagram || '',
-          linkedin: content.linkedin || '',
-          x: content.x || content.twitter || ''
-        })
-      }
-    } catch (error) {
-      console.error('Error fetching social links:', error)
-    }
-  }
 
   const socialIcons = [
     {
@@ -67,7 +55,7 @@ const Footer = () => {
     <footer className="bg-dark border-t border-highlight/30 py-8 mt-20">
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center justify-center gap-6">
-          {/* Social Media Icons */}
+          
           <div className="flex items-center justify-center gap-6">
             {socialIcons.map((social) => {
               if (!social.url) return null
@@ -86,7 +74,7 @@ const Footer = () => {
             })}
           </div>
           
-          {/* Copyright */}
+          
           <p className="text-text/60 text-center">
             © {new Date().getFullYear()} Ismail Sanouni. All rights reserved.
           </p>

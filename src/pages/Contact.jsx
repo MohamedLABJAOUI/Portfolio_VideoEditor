@@ -1,46 +1,35 @@
 import { motion } from 'framer-motion'
-import { useState } from 'react'
-import api from '../api/axios'
+import Squares from '../components/Squares'
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  })
-  const [loading, setLoading] = useState(false)
-  const [status, setStatus] = useState(null)
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
-  }
+    const name = e.target.name.value;
+    const email = e.target.email.value;
+    const message = e.target.message.value;
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setLoading(true)
-    setStatus(null)
+    const text = `📩 New Contact Message:\nName: ${name}\nEmail: ${email}\nMessage: ${message}`;
+    const whatsappNumber = "212625671316"; 
 
-    try {
-      const response = await api.post('/contact', formData)
-      if (response.data.success) {
-        setStatus({ type: 'success', message: response.data.message })
-        setFormData({ name: '', email: '', message: '' })
-      }
-    } catch (error) {
-      setStatus({
-        type: 'error',
-        message: error.response?.data?.message || 'Error sending message. Please try again.'
-      })
-    } finally {
-      setLoading(false)
-    }
-  }
+    window.open(
+      `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`,
+      "_blank"
+    );
+  };
 
   return (
-    <div className="min-h-screen pt-16">
+    <div className="min-h-screen pt-16 relative overflow-hidden">
+      {/* Animated Squares Background */}
+      <div className="fixed inset-0 z-0 opacity-30">
+        <Squares 
+          speed={0.5} 
+          squareSize={40}
+          direction='diagonal'
+          borderColor='rgba(155, 74, 254, 0.3)'
+          hoverFillColor='rgba(155, 74, 254, 0.4)'
+        />
+      </div>
       <div className="container mx-auto px-4 py-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -65,8 +54,6 @@ const Contact = () => {
                   type="text"
                   id="name"
                   name="name"
-                  value={formData.name}
-                  onChange={handleChange}
                   required
                   className="w-full px-3 py-2 bg-card border border-card/50 rounded-lg focus:outline-none focus:border-secondary text-text text-sm"
                   placeholder="Your name"
@@ -81,8 +68,6 @@ const Contact = () => {
                   type="email"
                   id="email"
                   name="email"
-                  value={formData.email}
-                  onChange={handleChange}
                   required
                   className="w-full px-3 py-2 bg-card border border-card/50 rounded-lg focus:outline-none focus:border-secondary text-text text-sm"
                   placeholder="your.email@example.com"
@@ -96,8 +81,6 @@ const Contact = () => {
                 <textarea
                   id="message"
                   name="message"
-                  value={formData.message}
-                  onChange={handleChange}
                   required
                   rows="3"
                   className="w-full px-3 py-2 bg-card border border-card/50 rounded-lg focus:outline-none focus:border-secondary text-text resize-none text-sm"
@@ -105,24 +88,11 @@ const Contact = () => {
                 />
               </div>
 
-              {status && (
-                <div
-                  className={`p-3 text-sm rounded-lg ${
-                    status.type === 'success'
-                      ? 'bg-green-900/50 text-green-300 border border-green-700'
-                      : 'bg-red-900/50 text-red-300 border border-red-700'
-                  }`}
-                >
-                  {status.message}
-                </div>
-              )}
-
               <button
                 type="submit"
-                disabled={loading}
-                className="w-full px-6 py-2 bg-secondary text-white text-sm font-semibold rounded-lg hover:bg-secondary/90 transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full px-6 py-2 bg-secondary text-white text-sm font-semibold rounded-lg hover:bg-secondary/90 transition-all transform hover:scale-105"
               >
-                {loading ? 'Sending...' : 'Send Message'}
+                Send to WhatsApp
               </button>
             </form>
           </div>

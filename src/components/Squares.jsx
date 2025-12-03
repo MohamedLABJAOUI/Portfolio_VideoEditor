@@ -46,18 +46,18 @@ const Squares = ({
             Math.floor((x - startX) / squareSize) === hoveredSquare.current.x &&
             Math.floor((y - startY) / squareSize) === hoveredSquare.current.y
           ) {
-            // Enhanced hover fill with glow effect
+            
             ctx.fillStyle = hoverFillColor;
             ctx.fillRect(squareX, squareY, squareSize, squareSize);
             
-            // Add glow effect around hovered square
+            
             ctx.shadowColor = 'rgba(155, 74, 254, 0.6)';
             ctx.shadowBlur = 15;
             ctx.fillStyle = 'rgba(155, 74, 254, 0.3)';
             ctx.fillRect(squareX, squareY, squareSize, squareSize);
             ctx.shadowBlur = 0;
             
-            // Brighter border for hovered square
+            
             ctx.strokeStyle = 'rgba(155, 74, 254, 0.8)';
             ctx.lineWidth = 2;
             ctx.strokeRect(squareX, squareY, squareSize, squareSize);

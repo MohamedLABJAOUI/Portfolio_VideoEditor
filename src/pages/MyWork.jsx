@@ -1,30 +1,40 @@
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
-import api from '../api/axios'
+
+import Squares from '../components/Squares'
 
 const MyWork = () => {
   const [projects, setProjects] = useState([])
   const [selectedProject, setSelectedProject] = useState(null)
 
   useEffect(() => {
-    fetchProjects()
+    
+    const staticProjects = [
+      { id: 1, title: "YouTube Video 1", video_url: "https://www.youtube.com/watch?v=SFpqILrea3g", type: 'video', editor: 'Premiere Pro' },
+      { id: 2, title: "YouTube Video 2", video_url: "https://www.youtube.com/watch?v=x89fLNpfCjk", type: 'video', editor: 'Premiere Pro' },
+      { id: 3, title: "YouTube Video 3", video_url: "https://www.youtube.com/watch?v=N8ea8Q0yKVM", type: 'video', editor: 'Premiere Pro' },
+      { id: 4, title: "YouTube Video 4", video_url: "https://www.youtube.com/watch?v=QmyH15xocnI", type: 'video', editor: 'Premiere Pro' },
+      { id: 5, title: "YouTube Video 5", video_url: "https://www.youtube.com/watch?v=nA82QtQsgns", type: 'video', editor: 'Premiere Pro' },
+      { id: 6, title: "YouTube Video 6", video_url: "https://www.youtube.com/watch?v=EaPb5i7uxv4", type: 'video', editor: 'Premiere Pro' },
+      { id: 7, title: "YouTube Shorts 1", video_url: "https://www.youtube.com/shorts/_SR_R7K4WLg", type: 'short', editor: 'Premiere Pro' },
+      { id: 8, title: "YouTube Shorts 2", video_url: "https://www.youtube.com/shorts/LBRSwmcOFV4", type: 'short', editor: 'Premiere Pro' },
+      { id: 9, title: "YouTube Shorts 3", video_url: "https://www.youtube.com/shorts/o4kTj0D3j6M", type: 'short', editor: 'Premiere Pro' },
+      { id: 10, title: "YouTube Shorts 4", video_url: "https://www.youtube.com/shorts/76BRkjpcXF0", type: 'short', editor: 'Premiere Pro' },
+      { id: 11, title: "YouTube Video 7", video_url: "https://www.youtube.com/watch?v=WwzxcgKU_2c", type: 'video', editor: 'Premiere Pro' },
+      { id: 12, title: "YouTube Video 8", video_url: "https://www.youtube.com/watch?v=arjK0I-HzkM", type: 'video', editor: 'Premiere Pro' },
+      { id: 13, title: "YouTube Video 9", video_url: "https://www.youtube.com/watch?v=K_t8o9vKT70", type: 'video', editor: 'Premiere Pro' },
+      { id: 14, title: "YouTube Video 10", video_url: "https://www.youtube.com/watch?v=uVDxLbEfn1U", type: 'video', editor: 'Premiere Pro' },
+      { id: 15, title: "YouTube Video 11", video_url: "https://www.youtube.com/watch?v=4GjFOSwf-hI", type: 'video', editor: 'Premiere Pro' },
+    ];
+    setProjects(staticProjects);
   }, [])
 
-  const fetchProjects = async () => {
-    try {
-      const response = await api.get('/projects')
-      if (response.data.success) {
-        setProjects(response.data.data)
-      }
-    } catch (error) {
-      console.error('Error fetching projects:', error)
-    }
-  }
+  
 
   const convertToEmbedUrl = (url) => {
     if (!url) return ''
     
-    // YouTube URL conversion
+    
     if (url.includes('youtube.com/watch')) {
       const videoId = url.split('v=')[1]?.split('&')[0]
       return videoId ? `https://www.youtube.com/embed/${videoId}` : url
@@ -37,7 +47,7 @@ const MyWork = () => {
       return url
     }
     
-    // Vimeo URL conversion
+    
     if (url.includes('vimeo.com/')) {
       const videoId = url.split('vimeo.com/')[1]?.split('?')[0]
       return videoId ? `https://player.vimeo.com/video/${videoId}` : url
@@ -60,8 +70,21 @@ const MyWork = () => {
     setSelectedProject(null)
   }
 
+  const videos = projects.filter(p => p.type === 'video');
+  const shorts = projects.filter(p => p.type === 'short');
+
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen pt-20 relative overflow-hidden">
+      {/* Animated Squares Background */}
+      <div className="fixed inset-0 z-0 opacity-30">
+        <Squares 
+          speed={0.5} 
+          squareSize={40}
+          direction='diagonal'
+          borderColor='rgba(155, 74, 254, 0.3)'
+          hoverFillColor='rgba(155, 74, 254, 0.4)'
+        />
+      </div>
       <div className="container mx-auto px-4 py-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -75,8 +98,9 @@ const MyWork = () => {
             A collection of my video editing projects and creative work
           </p>
 
+          <h2 className="text-2xl font-bold mb-4 text-secondary mt-8">YouTube Videos</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            {projects.map((project, index) => (
+            {videos.map((project, index) => (
               <motion.div
                 key={project.id}
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -86,33 +110,32 @@ const MyWork = () => {
                 onClick={() => project.video_url && openVideoModal(project)}
               >
                 <div className="relative overflow-hidden aspect-video bg-black">
-                  {project.image && (
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 absolute inset-0"
-                    />
+                  {project.video_url && (
+                    <iframe
+                      src={convertToEmbedUrl(project.video_url)}
+                      title={project.title}
+                      className="w-full h-full object-cover absolute inset-0 rounded-t-xl"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      frameBorder="0"
+                    ></iframe>
                   )}
                   {project.video_url && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/40 hover:bg-black/30 transition-opacity">
-                      <div className="bg-secondary rounded-full p-4 shadow-xl">
-                        <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
-                        </svg>
-                      </div>
+                    <div className="absolute top-2 left-2 bg-secondary text-white text-xs px-2 py-1 rounded shadow">
+                      {project.editor}
                     </div>
                   )}
+                  {/* Play button overlay for hint */}
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/40 hover:bg-black/30 transition-opacity pointer-events-none">
+                    <div className="bg-secondary rounded-full p-4 shadow-xl">
+                      <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
+                      </svg>
+                    </div>
+                  </div>
                 </div>
                 <div className="p-6">
-                  {project.category && (
-                    <span className="text-xs text-secondary font-semibold uppercase">
-                      {project.category}
-                    </span>
-                  )}
-                  <h3 className="text-xl font-semibold mt-2 mb-2">{project.title}</h3>
-                  {project.description && (
-                    <p className="text-text/70 text-sm line-clamp-2">{project.description}</p>
-                  )}
+                  
                 </div>
               </motion.div>
             ))}

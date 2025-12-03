@@ -1,9 +1,21 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
-import api from '../api/axios'
+
 import CircularText from '../components/CircularText'
 import Squares from '../components/Squares'
+import skill01 from '../assets/skills/skill01.png';
+import skill02 from '../assets/skills/skill02.png';
+import skill03 from '../assets/skills/skill03.png';
+import skill04 from '../assets/skills/skill04.png';
+import skill05 from '../assets/skills/skill05.png';
+import skill06 from '../assets/skills/skill06.png';
+import skill07 from '../assets/skills/skill07.png';
+import skill08 from '../assets/skills/skill08.png';
+import skill09 from '../assets/skills/skill09.png';
+import skill10 from '../assets/skills/skill10.png';
+import skill11 from '../assets/skills/skill11.png';
+import skill12 from '../assets/skills/skill12.png';
 
 const useWindowSize = () => {
   const [windowSize, setWindowSize] = useState({
@@ -34,44 +46,34 @@ const Home = () => {
 
   const [content, setContent] = useState({
     name: 'Ismail Sanouni',
-    title: 'Video Editor & Electronic Technician',
-    slogan: 'Bringing your vision to life through creative editing and technical expertise',
-    profile_image: '',
-    about: ''
+    title: 'Video Editor & Motion Designer',
+    slogan: 'Transforming ideas into compelling visual stories with precision, creativity, and technical mastery. From concept to final cut, I bring your vision to life through innovative editing, seamless storytelling, and cinematic-quality production.',
+    about: `I am a Video Editor and Content Creator dedicated to helping YouTubers turn raw footage into dynamic, engaging, and professional videos. I specialize in smooth storytelling, precise cuts, and captivating visuals that keep audiences hooked from start to finish.
+
+Whether it’s gaming, vlogs, tech, or tutorials, I deliver fast, high-quality edits tailored to your unique style, ensuring your content stands out and resonates with viewers.`
   })
 
-  const [skills, setSkills] = useState([])
+  const skillsArr = [
+    { icon: skill01, name: 'Adobe Premiere Pro', description: 'Industry-standard video editing software for fast, precise edits and professional output.' },
+    { icon: skill02, name: 'Adobe After Effects', description: 'Professional motion graphics and visual effects software for creating dynamic compositions and stunning animations.' },
+    { icon: skill03, name: 'Adobe Illustrator', description: 'Professional vector graphics software for designing precise, scalable illustrations, logos, and graphics.' },
+    { icon: skill04, name: 'Canva Pro', description: 'Easy-to-use online design tool for quickly creating visuals, presentations, and engaging content.' },
+    { icon: skill05, name: 'Adobe Photoshop', description: 'Professional image editing and creation software for precise and creative visuals.' },
+    { icon: skill06, name: 'Final Cut Pro', description: 'Professional video editing software for fast, precise, and cinematic-quality edits.' },
+    { icon: skill07, name: 'DaVinci Resolve', description: 'Professional video editing and color grading software for precise, cinematic-quality videos.' },
+    { icon: skill08, name: 'Avid Media Composer', description: 'Professional video editing software used in film and TV for precise, collaborative editing.' },
+    { icon: skill09, name: 'Adobe Lightroom', description: 'Professional photo editing software to quickly adjust, organize, and enhance your images.' },
+    { icon: skill10, name: 'Adobe Audition', description: 'Professional audio editing and mixing software for clear, precise, studio-quality sound.' },
+    { icon: skill11, name: 'Color Grading', description: 'Professional technique to adjust colors and mood in a video for a consistent and impactful visual look.' },
+    { icon: skill12, name: 'YouTube Advertising', description: 'YouTube advertising to reach a wide audience, increase visibility, and drive effective conversions.' }
 
-  useEffect(() => {
-    fetchContent()
-    fetchSkills()
-  }, [])
+  ];
 
-  const fetchContent = async () => {
-    try {
-      const response = await api.get('/content')
-      if (response.data.success) {
-        setContent(response.data.data)
-      }
-    } catch (error) {
-      console.error('Error fetching content:', error)
-    }
-  }
-
-  const fetchSkills = async () => {
-    try {
-      const response = await api.get('/skills')
-      if (response.data.success) {
-        setSkills(response.data.data)
-      }
-    } catch (error) {
-      console.error('Error fetching skills:', error)
-    }
-  }
+  
 
   return (
     <div className="min-h-screen pt-20 relative overflow-hidden">
-      {/* Animated Squares Background */}
+      
       <div className="fixed inset-0 z-0 opacity-30">
         <Squares 
           speed={0.5} 
@@ -82,10 +84,10 @@ const Home = () => {
         />
       </div>
       
-      {/* Content */}
+      
       <div className="container mx-auto px-4 py-20 relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-12">
-          {/* Left side - Text content */}
+          
           <motion.div 
             className="flex-1 text-center md:text-left"
             initial={{ opacity: 0, x: -50 }}
@@ -141,7 +143,7 @@ const Home = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right side - Profile image with Circular Text */}
+          
           <motion.div 
             className="flex-1 flex justify-center items-center"
             initial={{ opacity: 0, scale: 0.8 }}
@@ -149,10 +151,10 @@ const Home = () => {
             transition={{ delay: 0.3, duration: 0.6 }}
           >
             <div className="relative flex items-center justify-center">
-              {/* Circular Text - Responsive size */}
+              
               <div className="absolute" style={{ width: `${circularSize}px`, height: `${circularSize}px` }}>
                 <CircularText
-                  text="VIDEO EDITOR * ELECTRONIC TECHNICIAN * CREATIVE *"
+                  text="VIDEO EDITOR * MOTION DESIGNER * CREATIVE *"
                   onHover="speedUp"
                   spinDuration={20}
                   size={circularSize}
@@ -160,23 +162,21 @@ const Home = () => {
                 />
               </div>
               
-              {/* Profile Image inside */}
-              {content.profile_image && (
-                <div className="relative z-10">
-                  <div className="absolute inset-0 bg-secondary rounded-full blur-2xl opacity-20"></div>
-                  <img
-                    src={content.profile_image}
-                    alt={content.name}
-                    className="relative w-64 h-64 md:w-80 md:h-80 rounded-full object-cover border-4 border-secondary"
-                  />
-                </div>
-              )}
+              
+              <div className="relative z-10">
+                <div className="absolute inset-0 bg-secondary rounded-full blur-2xl opacity-20"></div>
+                <img
+                  src="/profileismail.jpeg"
+                  alt={content.name}
+                  className="relative w-64 h-64 md:w-80 md:h-80 rounded-full object-cover border-4 border-secondary"
+                />
+              </div>
             </div>
           </motion.div>
         </div>
       </div>
 
-      {/* About Section */}
+     
       <section id="about" className="relative z-10 py-20">
         <div className="container mx-auto px-4">
           <motion.div
@@ -213,7 +213,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Skills Section */}
+      
       <section id="skills" className="relative z-10 py-20">
         <div className="container mx-auto px-4">
           <motion.div
@@ -230,9 +230,9 @@ const Home = () => {
             </p>
 
             <div className="max-w-5xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
-              {skills.map((skill, index) => (
+              {skillsArr.map((skill, index) => (
                 <motion.div
-                  key={skill.id}
+                  key={skill.name}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -255,11 +255,6 @@ const Home = () => {
 
                   <h3 className="text-lg font-semibold text-white mb-2">
                     {skill.name}
-                    {skill.level != null && (
-                      <span className="ml-1 text-secondary text-sm">
-                        ({skill.level}%)
-                      </span>
-                    )}
                   </h3>
 
                   <p className="text-sm text-text/70 max-w-xs">

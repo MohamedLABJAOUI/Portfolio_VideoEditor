@@ -18,7 +18,7 @@ const Navbar = () => {
     const section = document.getElementById(sectionId)
     if (!section) return
 
-    const offset = 80 // Navbar height
+    const offset = 80 
     const elementPosition = section.getBoundingClientRect().top
     const offsetPosition = elementPosition + window.pageYOffset - offset
     window.scrollTo({
@@ -28,10 +28,10 @@ const Navbar = () => {
   }
 
   const handleNavClick = (e, link) => {
-    // Close mobile menu whenever a link is clicked
+    
     setIsMobileMenuOpen(false)
 
-    // Handle "Home" scroll-to-top
+   
     if (link.isHome) {
       e.preventDefault()
       if (location.pathname !== '/') {
@@ -45,13 +45,13 @@ const Navbar = () => {
       return
     }
 
-    // Handle in-page section scrolling (About, Skills, etc.)
+    
     if (link.isScroll && link.sectionId) {
       e.preventDefault()
       if (location.pathname === '/') {
         scrollToSection(link.sectionId)
       } else {
-        // Navigate home first, then scroll to the section
+        
         navigate('/')
         setTimeout(() => {
           scrollToSection(link.sectionId)
@@ -99,7 +99,7 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Mobile menu button */}
+          
           <div className="md:hidden">
             <button
               className="text-secondary focus:outline-none"
@@ -119,7 +119,7 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile menu */}
+        
         {isMobileMenuOpen && (
           <div className="mt-4 md:hidden">
             <div className="flex flex-col space-y-2 bg-dark/95 border border-highlight/30 rounded-xl px-4 py-3">

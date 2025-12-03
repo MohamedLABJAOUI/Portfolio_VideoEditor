@@ -1,46 +1,68 @@
-# Frontend Application
+# Ismail Sanouni - Video Editor & Motion Designer Portfolio
 
-## Overview
+This is the professional portfolio website for **Ismail Sanouni** – a video editor, content creator, and motion designer. It showcases his skillset, work, and allows for seamless contact through a modern, animated, and responsive web interface.
 
-React.js frontend for Ismail Sanouni Portfolio website.
+## 🚀 Features
 
-## Installation
+- **Smooth animated landing page** introducing Ismail SANOUNI and his services.
+- **About Me**: Learn about Ismail’s approach to content creation and client vision.
+- **Skills**: Detailed graphical list (with icons) of editing, design, and workflow tools: Premiere Pro, After Effects, DaVinci Resolve, Final Cut Pro, sound design, creative storytelling, and more.
+- **My Work**: Interactive gallery of YouTube video and shorts projects with fast-loading embedded previews.
+- **Contact**: Modern contact form that opens WhatsApp prefilled for direct client communication.
+- **Modern UI/UX**: Custom animated backgrounds (Squares, CircularText), responsive navigation, and mobile-friendly design.
+- **Social Links**: Connect via Instagram, LinkedIn, X (Twitter).
 
-```bash
-npm install
-```
+## 🛠️ Tech Stack
 
-## Environment Variables
+- **Frontend**: [React.js](https://react.dev/)
+- **Styling/UI**: [Tailwind CSS](https://tailwindcss.com/) + custom CSS
+- **Motion & Animation**: [Framer Motion](https://www.framer.com/motion/)
+- **Routing**: [react-router-dom](https://reactrouter.com/)
+- **Build Tool**: [Vite](https://vitejs.dev/)
 
-Create a `.env` file:
+## 📁 Project Structure
 
-```env
-VITE_API_URL=http://localhost:5000/api
-```
+- `/src/pages/`: Home, Skills, MyWork (portfolio gallery), Contact
+- `/src/components/`: Navbar, Footer, custom animations (Squares, CircularText)
+- `/src/assets/skills/`: Skill icons used in the Skills sections
+- `/public/profileismail.jpeg`: Profile photo
 
-## Running
+## 🔥 Visual & Interactive Effects
+- **Animated Grid Background**: `Squares` canvas component for subtle motion.
+- **Rotating Circular Text**: `CircularText` for decorative hero elements.
+- **Modern hover and transition effects**: Buttons, nav links, gallery overlays.
 
-Development:
-```bash
-npm run dev
-```
+## 🖥️ Running Locally
 
-Build for production:
-```bash
-npm run build
-```
+1. **Install dependencies** (from `/frontend` directory):
 
-Preview production build:
-```bash
-npm run preview
-```
+   ```bash
+   npm install
+   ```
 
-## Tech Stack
+2. **Run the development server:**
 
-- React 18+
-- Vite
-- TailwindCSS
-- React Router 6
-- Framer Motion
-- Axios
+   ```bash
+   npm run dev
+   ```
+
+   Then open the displayed URL in your browser (defaults to http://localhost:5173  or similar).
+
+3. **Build for production:**
+
+   ```bash
+   npm run build
+   ```
+
+## 📬 Contact the Author
+
+ Via Contact Page OR :
+- Instagram: [@ismailsn_12](https://www.instagram.com/ismailsn_12)
+- LinkedIn: [Ismail Sanouni](https://www.linkedin.com/in/ismailsanouni/)
+- X (Twitter): [@ismailsanouni](https://twitter.com/ismailsanouni)
+
+## 👤 Author
+
+Ismail Sanouni - Video Editor & Motion Designer
+
 
