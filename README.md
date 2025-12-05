@@ -8,7 +8,7 @@ This is the professional portfolio website for **Ismail Sanouni** – a video ed
 - **About Me**: Learn about Ismail’s approach to content creation and client vision.
 - **Skills**: Detailed graphical list (with icons) of editing, design, and workflow tools: Premiere Pro, After Effects, DaVinci Resolve, Final Cut Pro, sound design, creative storytelling, and more.
 - **My Work**: Interactive gallery of YouTube video and shorts projects with fast-loading embedded previews.
-- **Contact**: Modern contact form that opens WhatsApp prefilled for direct client communication.
+- **Contact**: Modern contact form that opens gmail prefilled for direct client communication.
 - **Modern UI/UX**: Custom animated backgrounds (Squares, CircularText), responsive navigation, and mobile-friendly design.
 - **Social Links**: Connect via Instagram, LinkedIn, X (Twitter).
 
