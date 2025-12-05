@@ -1,5 +1,6 @@
-import { motion } from 'framer-motion'
-import Squares from '../components/Squares'
+import { motion } from "framer-motion";
+import Squares from "../components/Squares";
+import emailjs from "emailjs-com";
 
 const Contact = () => {
   const handleSubmit = (e) => {
@@ -9,27 +10,43 @@ const Contact = () => {
     const email = e.target.email.value;
     const message = e.target.message.value;
 
-    const text = `📩 New Contact Message:\nName: ${name}\nEmail: ${email}\nMessage: ${message}`;
-    const whatsappNumber = "212625671316"; 
+    const params = {
+      name,
+      email,
+      message,
+      time: new Date().toLocaleString(),
+    };
 
-    window.open(
-      `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`,
-      "_blank"
-    );
+    emailjs
+      .send(
+        "service_9lb6ogd",
+        "template_3e4n27c",
+        params,
+        "s2tkCARAZqozP8s4J"
+      )
+      .then(() => {
+        alert("📩 Your message has been sent successfully!");
+        e.target.reset();
+      })
+      .catch((error) => {
+        console.error("EmailJS Error:", error);
+        alert("❌ Failed to send message.");
+      });
   };
 
   return (
     <div className="min-h-screen pt-16 relative overflow-hidden">
-      {/* Animated Squares Background */}
-      <div className="fixed inset-0 z-0 opacity-30">
-        <Squares 
-          speed={0.5} 
+      {/* Background */}
+      <div className="fixed inset-0 z-0 opacity-30 pointer-events-none">
+        <Squares
+          speed={0.5}
           squareSize={40}
-          direction='diagonal'
-          borderColor='rgba(155, 74, 254, 0.3)'
-          hoverFillColor='rgba(155, 74, 254, 0.4)'
+          direction="diagonal"
+          borderColor="rgba(155, 74, 254, 0.3)"
+          hoverFillColor="rgba(155, 74, 254, 0.4)"
         />
       </div>
+
       <div className="container mx-auto px-4 py-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -41,13 +58,17 @@ const Contact = () => {
             Get In <span className="text-secondary">Touch</span>
           </h1>
           <p className="text-text/70 text-center mb-4 text-sm">
-            Have a project in mind? Let's work together to bring your vision to life.
+            Have a project in mind? Let's work together.
           </p>
 
           <div className="bg-card/50 rounded-2xl p-4 md:p-6 border border-card">
             <form onSubmit={handleSubmit} className="space-y-3">
+              {/* Name */}
               <div>
-                <label htmlFor="name" className="block text-xs font-medium text-text mb-1">
+                <label
+                  htmlFor="name"
+                  className="block text-xs font-medium text-text mb-1"
+                >
                   Name
                 </label>
                 <input
@@ -60,8 +81,12 @@ const Contact = () => {
                 />
               </div>
 
+              {/* Email */}
               <div>
-                <label htmlFor="email" className="block text-xs font-medium text-text mb-1">
+                <label
+                  htmlFor="email"
+                  className="block text-xs font-medium text-text mb-1"
+                >
                   Email
                 </label>
                 <input
@@ -74,8 +99,12 @@ const Contact = () => {
                 />
               </div>
 
+              {/* Message */}
               <div>
-                <label htmlFor="message" className="block text-xs font-medium text-text mb-1">
+                <label
+                  htmlFor="message"
+                  className="block text-xs font-medium text-text mb-1"
+                >
                   Message
                 </label>
                 <textarea
@@ -85,22 +114,22 @@ const Contact = () => {
                   rows="3"
                   className="w-full px-3 py-2 bg-card border border-card/50 rounded-lg focus:outline-none focus:border-secondary text-text resize-none text-sm"
                   placeholder="Tell me about your project..."
-                />
+                ></textarea>
               </div>
 
+              {/* Button */}
               <button
                 type="submit"
                 className="w-full px-6 py-2 bg-secondary text-white text-sm font-semibold rounded-lg hover:bg-secondary/90 transition-all transform hover:scale-105"
               >
-                Send to WhatsApp
+                Send Email
               </button>
             </form>
           </div>
         </motion.div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Contact
-
+export default Contact;

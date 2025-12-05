@@ -4,7 +4,6 @@ import { useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
-import Skills from './pages/Skills'
 import MyWork from './pages/MyWork'
 import Contact from './pages/Contact'
 
@@ -50,13 +49,6 @@ function App() {
             </>
           } />
           <Route path="/about" element={<AboutPage />} />
-          <Route path="/skills" element={
-            <>
-              <Navbar />
-              <Skills />
-              <Footer />
-            </>
-          } />
           <Route path="/work" element={
             <>
               <Navbar />

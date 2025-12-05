@@ -74,10 +74,19 @@ const Footer = () => {
             })}
           </div>
           
-          
+          <div className="flex flex-col items-center gap-2 mt-6">
           <p className="text-text/60 text-center">
             © {new Date().getFullYear()} Ismail Sanouni. All rights reserved.
           </p>
+            <span className="flex items-center gap-2 text-xl font-semibold text-white tracking-wide">
+              Developed by <span className="text-secondary font-bold">Mohamed Labjaoui</span>
+              <span title="Verified" className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-blue-500 bg-opacity-90">
+                <svg className="w-3.5 h-3.5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 1.5c.516 0 1.021.141 1.45.406l1.01.647c.292.187.662.187.954 0l1.01-.647A2.5 2.5 0 0 1 17.5 3.2l-.08 1.205c-.03.445.122.89.425 1.203l.91.917a2.5 2.5 0 0 1-.208 3.575l-.948.638a1.167 1.167 0 0 0-.419 1.321l.308 1.1a2.5 2.5 0 0 1-2.068 3.155l-1.193.207a.968.968 0 0 0-.723.542L11 17a2.5 2.5 0 0 1-2 0l-.798-1.385a.968.968 0 0 0-.723-.542l-1.193-.206a2.5 2.5 0 0 1-2.068-3.156l.308-1.1a1.167 1.167 0 0 0-.418-1.32l-.948-.639A2.5 2.5 0 0 1 2.246 6.52l.91-.917a1.51 1.51 0 0 0 .425-1.204l-.08-1.204A2.5 2.5 0 0 1 5.576 2.55l1.01.647c.292.187.662.187.954 0l1.01-.647A2.5 2.5 0 0 1 10 1.5Zm2.472 7.31a.75.75 0 0 0-1.194-.91L9.31 10.143 8.717 9.58a.75.75 0 0 0-1.025 1.095l1.146 1.073a.75.75 0 0 0 1.087-.1l2.548-3.837Z" clipRule="evenodd" />
+                </svg>
+              </span>
+            </span>
+          </div>
         </div>
       </div>
     </footer>

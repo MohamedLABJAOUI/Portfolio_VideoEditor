@@ -55,15 +55,15 @@ Whether it’s gaming, vlogs, tech, or tutorials, I deliver fast, high-quality e
 
   const skillsArr = [
     { icon: skill01, name: 'Adobe Premiere Pro', description: 'Industry-standard video editing software for fast, precise edits and professional output.' },
-    { icon: skill02, name: 'Adobe After Effects', description: 'Professional motion graphics and visual effects software for creating dynamic compositions and stunning animations.' },
+  //{ icon: skill02, name: 'Adobe After Effects', description: 'Professional motion graphics and visual effects software for creating dynamic compositions and stunning animations.' },
     { icon: skill03, name: 'Adobe Illustrator', description: 'Professional vector graphics software for designing precise, scalable illustrations, logos, and graphics.' },
-    { icon: skill04, name: 'Canva Pro', description: 'Easy-to-use online design tool for quickly creating visuals, presentations, and engaging content.' },
+  //{ icon: skill04, name: 'Canva Pro', description: 'Easy-to-use online design tool for quickly creating visuals, presentations, and engaging content.' },
     { icon: skill05, name: 'Adobe Photoshop', description: 'Professional image editing and creation software for precise and creative visuals.' },
     { icon: skill06, name: 'Final Cut Pro', description: 'Professional video editing software for fast, precise, and cinematic-quality edits.' },
     { icon: skill07, name: 'DaVinci Resolve', description: 'Professional video editing and color grading software for precise, cinematic-quality videos.' },
     { icon: skill08, name: 'Avid Media Composer', description: 'Professional video editing software used in film and TV for precise, collaborative editing.' },
     { icon: skill09, name: 'Adobe Lightroom', description: 'Professional photo editing software to quickly adjust, organize, and enhance your images.' },
-    { icon: skill10, name: 'Adobe Audition', description: 'Professional audio editing and mixing software for clear, precise, studio-quality sound.' },
+  //{ icon: skill10, name: 'Adobe Audition', description: 'Professional audio editing and mixing software for clear, precise, studio-quality sound.' },
     { icon: skill11, name: 'Color Grading', description: 'Professional technique to adjust colors and mood in a video for a consistent and impactful visual look.' },
     { icon: skill12, name: 'YouTube Advertising', description: 'YouTube advertising to reach a wide audience, increase visibility, and drive effective conversions.' }
 
